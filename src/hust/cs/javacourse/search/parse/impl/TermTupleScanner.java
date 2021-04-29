@@ -16,7 +16,8 @@ public class TermTupleScanner extends AbstractTermTupleScanner {
 
 
     int pos=0; //单词当前位置
-
+    Queue<AbstractTermTuple> stringBuff = new LinkedList<>();
+    StringSplitter split = new StringSplitter();
     /**
      * 构造函数
      *
@@ -28,7 +29,7 @@ public class TermTupleScanner extends AbstractTermTupleScanner {
     /**
      * 用于缓存每一行多余的数据
      */
-    Queue<AbstractTermTuple> stringBuff = new LinkedList<>();
+
 
     /**
      * 获得下一个三元组
@@ -46,7 +47,6 @@ public class TermTupleScanner extends AbstractTermTupleScanner {
                 if (str == null) {
                     return null;
                 }
-
                 //新读取的一行为空行
                 while (str.trim().length() == 0) {
                     str = input.readLine();
@@ -55,18 +55,18 @@ public class TermTupleScanner extends AbstractTermTupleScanner {
                     }
                 }
 
-                StringSplitter split = new StringSplitter();
                 split.setSplitRegex(Config.STRING_SPLITTER_REGEX);
                 for (String word : split.splitByRegex(str)) {
-                    TermTuple tt = new TermTuple();
-                    tt.curPos = pos;
+                    TermTuple termTuple = new TermTuple();
+                    termTuple.curPos = pos;
                     // 是否忽略大小写
                     if (Config.IGNORE_CASE) {
-                        tt.term = new Term(word.toLowerCase());
-                    } else {
-                        tt.term = new Term(word);
+                        termTuple.term = new Term(word.toLowerCase());
                     }
-                    stringBuff.add(tt);
+                    else {
+                        termTuple.term = new Term(word);
+                    }
+                    stringBuff.add(termTuple);
                     pos++;
                 }
             }
@@ -77,4 +77,7 @@ public class TermTupleScanner extends AbstractTermTupleScanner {
 
         return stringBuff.poll();
     }
+
+    @Override
+    public void close(){super.close();}
 }

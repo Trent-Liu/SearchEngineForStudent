@@ -101,11 +101,6 @@ public class Hit extends AbstractHit {
         return termPostingMapping;
     }
 
-
-
-
-
-
     /**
      * 获得命中结果的字符串表示, 用于显示搜索结果.
      *
@@ -113,16 +108,13 @@ public class Hit extends AbstractHit {
      */
     @Override
     public String toString() {
-        return "Hit{" +
-                "docId=" + docId +
-                ", docPath='" + docPath + '\'' +
-                ", content='" + content + '\'' +
-                ", termPostingMapping=" + termPostingMapping +
-                ", score=" + score +
-                '}';
+        return "\nHit:\n" +
+                "docId=" + docId +"\n"+
+                "docPath='" + docPath + '\n'+
+                "content='" + content + '\n'+
+                "Term and postion=" + termPostingMapping +'\n'+
+                "score=" + score;
     }
-
-
     /**
      * 比较二个命中结果的大小，根据score比较
      *

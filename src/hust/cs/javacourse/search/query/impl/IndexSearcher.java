@@ -136,10 +136,10 @@ public class IndexSearcher extends AbstractIndexSearcher {
             //如果有一个为空，对于OR来说，只搜索那个不为空的词
             if (indexSearchResult1 == null || indexSearchResult2 == null) {
                 if(indexSearchResult1 == null) {
-                    return search(queryTerm1,sorter);
+                    return search(queryTerm2,sorter);
                 }
                 if(indexSearchResult2 == null) {
-                    return search(queryTerm2,sorter);
+                    return search(queryTerm1,sorter);
                 }
             }
             //两个Term都不为空

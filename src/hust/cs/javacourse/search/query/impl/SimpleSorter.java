@@ -42,19 +42,14 @@ public class SimpleSorter implements Sort {
         }
 
          */
-
+        /**
+        问题：如何在知道第几个的情况下取出map的值
+         */
         for (Map.Entry<AbstractTerm, AbstractPosting> entry : hit.getTermPostingMapping().entrySet()) {
             if (entry.getValue() != null) {
                 s += entry.getValue().getFreq();
             }
         }
-
-
-
-        /*
-        分数倒置
-        */
-
         return -s;
     }
 

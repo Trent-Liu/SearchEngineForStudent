@@ -28,11 +28,12 @@ public class PatternTermTupleFilter extends AbstractTermTupleFilter {
         if(patternFilter==null) {
             return null;
         }
-
-        while (!patternFilter.term.getContent().matches(Config.TERM_FILTER_PATTERN)){//不匹配，含有非英文字符
+        /*
+        不匹配
+         */
+        while (!patternFilter.term.getContent().matches(Config.TERM_FILTER_PATTERN)){
 
             patternFilter = input.next();
-
             if(patternFilter==null) {
                 return null;
             }

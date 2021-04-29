@@ -67,7 +67,7 @@ public class DocumentBuilder extends AbstractDocumentBuilder {
     public  AbstractDocument build(int docId, String docPath, AbstractTermTupleStream termTupleStream){
         //创建Document
         AbstractDocument document = new Document(docId,docPath);
-        //从三元组流中取下一个三元组
+        //从三元组流中取下一个三元组（已过滤）
         for(AbstractTermTuple termTuple = termTupleStream.next();termTuple!=null;termTuple = termTupleStream.next()) {
             document.addTuple(termTuple);
         }

@@ -38,18 +38,21 @@ public class Index extends AbstractIndex {
 
         Map<AbstractTerm, List<Integer>> map = new HashMap<AbstractTerm, List<Integer>>();
 
+
+        //得到这个文件所有的三元组，将信息添加到现有的index中
         //遍历该文件中所有的三元组，document.getTuples()得到所有的三元组直到为null
         for(AbstractTermTuple termTuple : document.getTuples()){
-            //此单词键值还没有添加到列表中
+
+            //此单词键值还没有添加到列表中，即此次添加的单词在文档中第一次出现
             if(map.get(termTuple.term) == null) {
                 //添加此单词键值，并初始化位置列表
                 map.put(termTuple.term, new ArrayList<Integer>());
             }
-            // 找到对应单词，获得其对应的位置列表，并将所有单词的位置都添加到其中
+            // 若之前单词已经出现过，添加到map中了，则找到对应单词，获得其对应的位置列表，添加这次出现的位置
             map.get(termTuple.term).add(termTuple.curPos);
         }
 
-        // 更新倒排索引，遍历所有的单词键值
+        // 更新倒排索引index，遍历所有的单词键值
         for(AbstractTerm term : map.keySet()){
 
             //单词文档列表中若不存在此单词，则添加此单词
