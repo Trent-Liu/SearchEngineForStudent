@@ -112,8 +112,8 @@ public class Hit extends AbstractHit {
                 "docId=" + docId +"\n"+
                 "docPath='" + docPath + '\n'+
                 "content='" + content + '\n'+
-                "Term and postion=" + termPostingMapping +'\n'+
-                "score=" + score;
+                "score=" + score+
+                "\nTermPostingMapping:\n" + termPostingMapping +'\n';
     }
     /**
      * 比较二个命中结果的大小，根据score比较

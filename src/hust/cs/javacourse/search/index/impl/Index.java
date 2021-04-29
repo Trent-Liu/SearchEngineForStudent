@@ -22,7 +22,13 @@ public class Index extends AbstractIndex {
      */
     @Override
     public String toString() {
-        return this.termToPostingListMapping.toString();
+        String indexAll="";
+        for (Map.Entry<AbstractTerm, AbstractPostingList> entry : termToPostingListMapping.entrySet()) {
+
+            indexAll+=""+entry.getKey()+" :\t\t"+entry.getValue()+'\n';
+
+        }
+        return indexAll;
     }
 
     /**
